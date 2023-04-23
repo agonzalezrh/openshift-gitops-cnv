@@ -58,7 +58,32 @@ spec:
             password: P@ssw0rd
             chpasswd: { expire: False }
             runcmd:
-              - yum install -y haproxy
-              - systemctl enable --now haproxy
+            - yum install -y haproxy
+            - systemctl enable --now haproxy
+            write_files:
+            - content: |
+                global
+                  log         127.0.0.1 local2
+                  chroot      /var/lib/haproxy
+                  pidfile     /var/run/haproxy.pid
+                  maxconn     4000
+                  user        haproxy
+                  group       haproxy
+                  daemon
+              defaults
+                  mode                    http
+                  log                     global
+                  option                  httplog
+                  option                  dontlognull
+                  option http-server-close
+                  option forwardfor       except 127.0.0.0/8
+              frontend main
+                  bind *:80
+                  default_backend             app
+              backend app
+                  balance     roundrobin
+                  server  web01 web01:80 check
+                  server  web02 web02:80 check          
+              path: /etc/haproxy/haproxy.cfg
         name: cloudinitdisk          
       evictionStrategy: LiveMigrate
