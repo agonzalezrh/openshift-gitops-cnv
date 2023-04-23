@@ -6,8 +6,6 @@ configMapGenerator:
   - environment.env
   literals:
   - ARGOCD_APP_NAMESPACE=$(basename $(pwd))
-  files:
-  - values.yaml
 configurations:
 - configuration.yaml
 resources:
