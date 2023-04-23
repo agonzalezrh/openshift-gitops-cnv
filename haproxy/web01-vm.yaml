@@ -11,11 +11,11 @@ spec:
       kind: 'DataVolume'
       metadata:
         name: 'web01-pvc'
-        namespace: $(ARGOCD_APP_NAMESPACE)
       spec:
         source:
           pvc:
             name: 'rocky9-latest'
+            source: $(ARGOCD_APP_NAMESPACE)
         storage:
           resources:
             requests:
