@@ -6,4 +6,4 @@ resources:
 - services.yaml
 - route.yaml
 commonAnnotations:
-  test: "{{ .Values.metadata.namespace }}"
+  test: "$(ARGOCD_APP_NAMESPACE)"
