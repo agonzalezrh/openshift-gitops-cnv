@@ -4,13 +4,8 @@ configMapGenerator:
 - name: environment
   envs:
   - environment.env
-resources:
-- datavolume.yaml
-- haproxy-vm.yaml
-- web01-vm.yaml
-- web02-vm.yaml
-- services.yaml
-- route.yaml
+configurations:
+- configuration.yaml
 vars:
 - name: ARGOCD_APP_NAMESPACE
   objref:
@@ -19,3 +14,10 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.ARGOCD_APP_NAMESPACE
+resources:
+- datavolume.yaml
+- haproxy-vm.yaml
+- web01-vm.yaml
+- web02-vm.yaml
+- services.yaml
+- route.yaml
