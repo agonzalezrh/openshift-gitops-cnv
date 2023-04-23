@@ -3,7 +3,7 @@ kind: DataVolume
 metadata:
   name: rocky9-latest
   annotations:
-    argocd.argoproj.io/sync-wave: "2"  
+    argocd.argoproj.io/sync-wave: "1"  
 spec:
   source:
       http:
