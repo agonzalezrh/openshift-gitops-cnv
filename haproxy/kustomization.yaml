@@ -1,3 +1,7 @@
 resources:
 - datavolume.yaml
 - haproxy-vm.yaml
+- web01-vm.yaml
+- web02-vm.yaml
+- services.yaml
+- route.yaml
