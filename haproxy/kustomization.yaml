@@ -1,4 +1,4 @@
-namespace: $namespace
+namespace: ${ARGOCD_APP_NAMESPACE}
 resources:
 - datavolume.yaml
 - haproxy-vm.yaml
