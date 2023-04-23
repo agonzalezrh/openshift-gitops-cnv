@@ -4,8 +4,9 @@ configMapGenerator:
 - name: environment
   envs:
   - environment.env
-configurations:
-- configuration.yaml
+varReference:
+- path: spec/dataVolumeTemplates[]/spec/source/pvc/namespace
+  kind: VirtualMachine
 vars:
 - name: ARGOCD_APP_NAMESPACE
   objref:
