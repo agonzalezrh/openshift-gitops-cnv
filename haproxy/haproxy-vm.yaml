@@ -21,6 +21,9 @@ spec:
           - name: pvcdisk
             disk:
               bus: virtio
+          - disk:
+              bus: virtio
+            name: cloudinitdisk                
           interfaces:
           - name: default
             masquerade: {}
