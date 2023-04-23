@@ -1,0 +1,37 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/vm: haproxy
+  name: haproxy
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: haproxy
+    spec:
+      domain:
+        machine:
+          type: ""
+        cpu:
+          cores: 1
+        devices:
+          disks:
+          - name: pvcdisk
+            disk:
+              bus: virtio
+          interfaces:
+          - name: default
+            masquerade: {}
+        resources:
+          requests:
+            memory: 2Gi
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+      - name: pvcdisk
+        persistentVolumeClaim:
+          claimName: rocky9-latest
+      evictionStrategy: LiveMigrate
