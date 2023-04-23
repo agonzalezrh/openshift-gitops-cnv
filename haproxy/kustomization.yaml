@@ -20,6 +20,5 @@ resources:
 - web02-vm.yaml
 - services.yaml
 - route.yaml
-varReference:
-- path: spec/dataVolumeTemplates[]/spec/source/pvc/namespace
-  kind: VirtualMachine
+configurations:
+- configuration.yaml
