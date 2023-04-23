@@ -1,4 +1,4 @@
-namespace: $NAMESPACE
+namespace: $namespace
 resources:
 - datavolume.yaml
 - haproxy-vm.yaml
