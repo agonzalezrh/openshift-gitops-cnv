@@ -9,7 +9,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    vm.cnv.io/name: web01
+    vm.kubevirt.io/name: web01
 ---    
 apiVersion: v1
 kind: Service
@@ -21,7 +21,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    vm.cnv.io/name: web02
+    vm.kubevirt.io/name: web02
 ---
 apiVersion: v1
 kind: Service
@@ -33,4 +33,4 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    vm.cnv.io/name: haproxy
+    vm.kubevirt.io/name: haproxy
