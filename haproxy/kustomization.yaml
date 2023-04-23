@@ -5,3 +5,5 @@ resources:
 - web02-vm.yaml
 - services.yaml
 - route.yaml
+commonAnnotations:
+  test: $ARGOCD_APP_NAMESPACE	
