@@ -59,7 +59,7 @@ spec:
             chpasswd: { expire: False }
             runcmd:
             - yum install -y haproxy
-            - curl -O /etc/haproxy/haproxy.cfg https://raw.githubusercontent.com/agonzalezrh/openshift-gitops-cnv/main/haproxy/haproxy.cfg
+            - curl -o /etc/haproxy/haproxy.cfg https://raw.githubusercontent.com/agonzalezrh/openshift-gitops-cnv/main/haproxy/haproxy.cfg
             - systemctl enable --now haproxy
         name: cloudinitdisk          
       evictionStrategy: LiveMigrate
