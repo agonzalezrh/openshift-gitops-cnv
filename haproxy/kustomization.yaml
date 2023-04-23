@@ -1,3 +1,4 @@
+namespace: $NAMESPACE
 resources:
 - datavolume.yaml
 - haproxy-vm.yaml
@@ -5,5 +6,3 @@ resources:
 - web02-vm.yaml
 - services.yaml
 - route.yaml
-commonAnnotations:
-  test: $NAMESPACE
