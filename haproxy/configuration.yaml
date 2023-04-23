@@ -1,0 +1,3 @@
+varReference:
+- path: spec/dataVolumeTemplates[]/metadata/namespace
+  kind: dataVolumeTemplates
