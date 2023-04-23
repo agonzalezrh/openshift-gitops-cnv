@@ -10,12 +10,12 @@ spec:
     - apiVersion: 'cdi.kubevirt.io/v1beta1'
       kind: 'DataVolume'
       metadata:
-        name: 'web02-pvc'
-        namespace: $(ARGOCD_APP_NAMESPACE)
+        name: 'web02-pvc'    
       spec:
         source:
           pvc:
             name: 'rocky9-latest'
+            source: $(ARGOCD_APP_NAMESPACE)
         storage:
           resources:
             requests:
