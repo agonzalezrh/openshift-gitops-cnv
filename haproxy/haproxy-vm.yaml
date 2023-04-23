@@ -6,6 +6,19 @@ metadata:
   name: haproxy
 spec:
   running: true
+  dataVolumeTemplates:
+    - apiVersion: 'cdi.kubevirt.io/v1beta1'
+      kind: 'DataVolume'
+      metadata:
+        name: 'haproxy-pvc'
+      spec:
+        source:
+          pvc:
+            name: 'rocky9-latest'
+        storage:
+          resources:
+            requests:
+              storage: '10Gi'  
   template:
     metadata:
       labels:
@@ -35,8 +48,8 @@ spec:
         pod: {}
       volumes:
       - name: pvcdisk
-        persistentVolumeClaim:
-          claimName: rocky9-latest
+        dataVolume:
+          name: haproxy-pvc
       - cloudInitNoCloud:
           userData: |-
             #cloud-config
