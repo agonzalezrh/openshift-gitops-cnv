@@ -34,4 +34,14 @@ spec:
       - name: pvcdisk
         persistentVolumeClaim:
           claimName: rocky9-latest
+      - cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            user: centos
+            password: P@ssw0rd
+            chpasswd: { expire: False }
+            runcmd:
+              - yum install -y haproxy
+              - systemctl enable --now haproxy
+        name: cloudinitdisk          
       evictionStrategy: LiveMigrate
