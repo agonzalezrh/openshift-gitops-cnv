@@ -11,7 +11,7 @@ spec:
       kind: 'DataVolume'
       metadata:
         name: 'web02-pvc'
-        namespace: $ARGOCD_APP_NAMESPACE
+        namespace: $(ARGOCD_APP_NAMESPACE)
       spec:
         source:
           pvc:
