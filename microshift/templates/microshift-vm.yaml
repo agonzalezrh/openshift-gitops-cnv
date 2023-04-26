@@ -57,17 +57,11 @@ spec:
             user: root
             password: P@ssw0rd
             chpasswd: { expire: False }
-            rh_subscription:
-                  activation-key: {{.Values.agnosticv.satellite_activationkey}}
-                  org: {{.Values.agnosticv.satellite_url}}
-                  auto-attach: true
-                  enable-repo:
-                    - rhocp-4.12-for-rhel-8-x86_64-rpms
-                    - fast-datapath-for-rhel-8-x86_64-rpms
-                  rhsm-baseurl: https://{{.Values.agnosticv.satellite_url}}/pulp/repos
-                  server-hostname: https://{{.Values.agnosticv.satellite_url}}:8443/rhsm
             runcmd:
-            - rpm -Uhv https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
+            - curl -k -O katello-ca-consumer-latest.noarch.rpm https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
+            - rpm -Uhv katello-ca-consumer-latest.noarch.rpm
+            - subscription-manager register --org={{.Values.agnosticv.satellite_org}} --activation-key={{.Values.agnosticv.satellite_activationkey}}
+            - subscription-manager repos --enable rhocp-4.12-for-rhel-8-x86_64-rpms --enable fast-datapath-for-rhel-8-x86_64-rpms
             - dnf install -y microshift
             - echo "{{.Values.agnosticv.ocp4_pull_secret }}" > /etc/crio/openshift-pull-secret
             - chown root:root /etc/crio/openshift-pull-secret
