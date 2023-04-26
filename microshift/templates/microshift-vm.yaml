@@ -67,6 +67,7 @@ spec:
                   rhsm-baseurl: https://{{.Values.agnosticv.satellite_url}}/pulp/repos
                   server-hostname: https://{{.Values.agnosticv.satellite_url}}:8443/rhsm
             runcmd:
+            - rpm -Uhv https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
             - dnf install -y microshift
             - echo "{{.Values.agnosticv.ocp4_pull_secret }}" > /etc/crio/openshift-pull-secret
             - chown root:root /etc/crio/openshift-pull-secret
