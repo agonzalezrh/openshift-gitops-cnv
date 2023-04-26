@@ -15,7 +15,7 @@ spec:
         source:
           pvc:
             name: 'rocky9-latest'
-            namespace: $(ARGOCD_APP_NAMESPACE)
+            namespace: {{ .Release.Namespace }}
         storage:
           resources:
             requests:
