@@ -58,9 +58,9 @@ spec:
             password: P@ssw0rd
             chpasswd: { expire: False }
             runcmd:
-            - curl -k -O katello-ca-consumer-latest.noarch.rpm https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
+            - curl -k -o katello-ca-consumer-latest.noarch.rpm https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
             - rpm -Uhv katello-ca-consumer-latest.noarch.rpm
-            - subscription-manager register --org={{.Values.agnosticv.satellite_org}} --activation-key={{.Values.agnosticv.satellite_activationkey}}
+            - subscription-manager register --org={{.Values.agnosticv.satellite_org}} --activationkey={{.Values.agnosticv.satellite_activationkey}}
             - subscription-manager repos --enable rhocp-4.12-for-rhel-8-x86_64-rpms --enable fast-datapath-for-rhel-8-x86_64-rpms
             - dnf install -y microshift
             - echo "{{.Values.agnosticv.ocp4_pull_secret }}" > /etc/crio/openshift-pull-secret
