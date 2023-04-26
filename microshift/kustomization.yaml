@@ -3,9 +3,6 @@ kind: Kustomization
 bases:
 - environment/
 resources:
-- datavolume.yaml
-- haproxy-vm.yaml
-- web01-vm.yaml
-- web02-vm.yaml
+- microshift-vm.yaml
 - services.yaml
 - route.yaml
