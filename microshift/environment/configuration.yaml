@@ -1,5 +1,0 @@
-varReference:
-- path: spec/dataVolumeTemplates[]/spec/source/pvc/namespace
-  kind: VirtualMachine
-- path: spec/template/spec/volumes[]/cloudInitNoCloud
-  kind: VirtualMachine
