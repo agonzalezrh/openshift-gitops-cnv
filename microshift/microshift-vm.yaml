@@ -1,0 +1,72 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/vm: microshift
+  name: microshift
+spec:
+  running: true
+  dataVolumeTemplates:
+    - apiVersion: 'cdi.kubevirt.io/v1beta1'
+      kind: 'DataVolume'
+      metadata:
+        name: 'microshift-pvc'
+      spec:
+        source:
+          pvc:
+            name: 'rhel-8.7'
+            namespace: cnv-images
+        storage:
+          resources:
+            requests:
+              storage: '10Gi'  
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: microshift
+    spec:
+      domain:
+        machine:
+          type: pc-q35-rhel8.6.0
+        cpu:
+          cores: 1
+        devices:
+          disks:
+          - name: pvcdisk
+            disk:
+              bus: virtio
+          - disk:
+              bus: virtio
+            name: cloudinitdisk                
+          interfaces:
+          - name: default
+            masquerade: {}
+        resources:
+          requests:
+            memory: 2Gi
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+      - name: pvcdisk
+        dataVolume:
+          name: microshift-pvc
+      - cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            user: root
+            password: P@ssw0rd
+            chpasswd: { expire: False }
+            runcmd:
+            - subscription-manager register --url=https://$(satellite_url):8443/rhsm --org 'myorg' --activationkey=$(satellite_activationkey) --org=$(satellite_org)
+            - subscription-manager repos --enable rhocp-4.12-for-rhel-8-$(uname -i)-rpms --enable fast-datapath-for-rhel-8-$(uname -i)-rpms
+            - dnf install -y microshift
+            - cp $HOME/openshift-pull-secret /etc/crio/openshift-pull-secret
+            - chown root:root /etc/crio/openshift-pull-secret
+            - chmod 600 /etc/crio/openshift-pull-secret
+            - firewall-cmd --permanent --zone=trusted --add-source=10.42.0.0/16
+            - firewall-cmd --permanent --zone=trusted --add-source=169.254.169.1
+            - firewall-cmd --reload
+            - systemctl enable --now microshift
+        name: cloudinitdisk          
+      evictionStrategy: LiveMigrate
