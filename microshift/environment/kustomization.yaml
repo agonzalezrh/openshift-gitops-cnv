@@ -15,21 +15,21 @@ vars:
     kind: ConfigMap
     name: agnosticv
     apiVersion: v1
-  fieldref:
-    fieldpath: data.satellite_url
-- name: satellite_activationkey
-  objref:
-    kind: ConfigMap
-    name: agnosticv
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.satellite_activationkey
-- name: satellite_org
-  objref:
-    kind: ConfigMap
-    name: agnosticv
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.satellite_org
+#  fieldref:
+#    fieldpath: data.satellite_url
+#- name: satellite_activationkey
+#  objref:
+#    kind: ConfigMap
+#    name: agnosticv
+#    apiVersion: v1
+#  fieldref:
+#    fieldpath: data.satellite_activationkey
+#- name: satellite_org
+#  objref:
+#    kind: ConfigMap
+#    name: agnosticv
+#    apiVersion: v1
+#  fieldref:
+#    fieldpath: data.satellite_org
 configurations:
 - configuration.yaml
