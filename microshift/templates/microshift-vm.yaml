@@ -35,13 +35,10 @@ spec:
           - name: pvcdisk
             disk:
               bus: virtio
-          - type: file
-            name: ansiblecloudinit
-            target:
-              dev: vdb
-            cloudinit:
-              nocloud:
-                userDataSecretRef: microshift-userdata
+          - name: cloudinitdisk
+            cloudInitNoCloud:
+              secretRef:
+                name: microshift-userdata
           interfaces:
           - name: default
             masquerade: {}
