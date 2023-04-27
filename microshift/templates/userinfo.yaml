@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: userinfo
 data:
-  msg: |
-    init
-    {{ (lookup "v1" "Namespace" "" "bring-your-demo-b9794").metadata }}
+  objects: 
+    - kind: Service
+      name: microshift
+    - kind: Route
+      name: microshift
