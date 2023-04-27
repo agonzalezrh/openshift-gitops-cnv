@@ -70,4 +70,8 @@ spec:
       - name: pvcdisk
         dataVolume:
           name: microshift-pvc
+      - name: microshift-vdc
+        dataVolume:
+          name: microshift-vdc
+
       evictionStrategy: LiveMigrate
