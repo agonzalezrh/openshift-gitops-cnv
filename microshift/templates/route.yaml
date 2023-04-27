@@ -1,10 +1,10 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: "haproxy"
+  name: "microshift"
 spec:
   port:
-    targetPort: "80"
+    targetPort: "6443"
   to:
     kind: Service
-    name: "haproxy"
+    name: "microshift-api"
