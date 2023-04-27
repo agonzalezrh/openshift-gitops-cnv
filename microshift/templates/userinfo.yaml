@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: userinfo
-data:
+data: |+
   objects: 
     - kind: Service
       name: microshift
