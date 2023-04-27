@@ -4,7 +4,7 @@ metadata:
   name: userinfo
 data:
   msg: |
-    {{ range $index, $service := (lookup "v1" "Service" .Release.Namespace "").items }}
+    {{ range $index, $service := (lookup "v1" "Service" "bring-your-demo-b9794" "").items }}
        {{ $service }}
     {{ end }}
 
