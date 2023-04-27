@@ -36,6 +36,7 @@ spec:
             disk:
               bus: virtio
           - type: file
+            name: ansiblecloudinit
             target:
               dev: vdb
             cloudinit:
