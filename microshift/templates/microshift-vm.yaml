@@ -36,9 +36,8 @@ spec:
             disk:
               bus: virtio
           - name: cloudinitdisk
-            cloudInitNoCloud:
-              secretRef:
-                name: microshift-userdata
+            disk:
+              bus: virtio
           interfaces:
           - name: default
             masquerade: {}
@@ -49,6 +48,10 @@ spec:
       - name: default
         pod: {}
       volumes:
+      - name: cloudinitdisk
+        cloudInitNoCloud:
+          secretRef:
+            name: microshift-userdata
       - name: pvcdisk
         dataVolume:
           name: microshift-pvc
