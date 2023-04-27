@@ -5,7 +5,4 @@ metadata:
 data:
   msg: |
     init
-    {{ range $index, $service := (lookup "v1" "Service" "bring-your-demo-b9794" "").items }}
-       hello
-    {{ end }}
-
+    (lookup "v1" "Namespace" "" "bring-your-demo-b9794").metadata
