@@ -11,6 +11,6 @@ data:
   msg: |+
     {{`
     You can login to root@ssh.metal.apps.metal.dev.redhatworkshops.io -p {{ object_info.Service_microshift.spec.ports[0].nodePort }}
-    Password is {{.Values.agnosticv.common_password }}
-    The API access is https://`}}{{ object_info.Route_microshift.spec.host }}{{`:6443
+    Password is `}}{{.Values.agnosticv.common_password }}{{`
+    The API access is https://{{ object_info.Route_microshift.spec.host }}{{`:6443
     `}}
