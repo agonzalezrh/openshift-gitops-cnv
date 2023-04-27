@@ -19,7 +19,19 @@ spec:
         storage:
           resources:
             requests:
-              storage: '20Gi'  
+              storage: '20Gi'
+    - metadata:
+        name: 'microshift-vdc'
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 20Gi
+          volumeMode: Block
+        source:
+          blank: {}
   template:
     metadata:
       labels:
@@ -38,6 +50,9 @@ spec:
           - name: cloudinitdisk
             disk:
               bus: virtio
+          - disk:
+              bus: virtio
+            name: microshift-vdc
           interfaces:
           - name: default
             masquerade: {}
