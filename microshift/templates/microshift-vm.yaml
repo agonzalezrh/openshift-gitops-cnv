@@ -35,9 +35,11 @@ spec:
           - name: pvcdisk
             disk:
               bus: virtio
-          - disk:
-              bus: virtio
-            name: cloudinitdisk                
+          - target:
+              dev: vdb
+            cloudinit:
+              nocloud:
+                userDataSecretRef: microshift-userdata
           interfaces:
           - name: default
             masquerade: {}
@@ -51,21 +53,4 @@ spec:
       - name: pvcdisk
         dataVolume:
           name: microshift-pvc
-      - cloudInitNoCloud:
-          userData: |-
-            #cloud-config
-            user: root
-            password: P@ssw0rd
-            chpasswd: { expire: False }
-            runcmd:
-            - curl -k -o katello-ca-consumer-latest.noarch.rpm https://{{ .Values.agnosticv.satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm
-            - rpm -Uhv katello-ca-consumer-latest.noarch.rpm
-            - subscription-manager register --org={{.Values.agnosticv.satellite_org}} --activationkey={{.Values.agnosticv.satellite_activationkey}} --serverurl=https://{{ .Values.agnosticv.satellite_url }}:8443/rhsm/ --baseurl=https://{{ .Values.agnosticv.satellite_url }}/pulp/repos/
-            - subscription-manager repos --enable rhocp-4.12-for-rhel-8-x86_64-rpms --enable fast-datapath-for-rhel-8-x86_64-rpms
-            - dnf install -y microshift
-            - echo '{{.Values.agnosticv.ocp4_pull_secret }}' > /etc/crio/openshift-pull-secret
-            - chown root:root /etc/crio/openshift-pull-secret
-            - chmod 600 /etc/crio/openshift-pull-secret
-            - systemctl enable --now microshift
-        name: cloudinitdisk          
       evictionStrategy: LiveMigrate
