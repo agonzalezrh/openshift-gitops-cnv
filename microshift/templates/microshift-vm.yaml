@@ -40,6 +40,7 @@ spec:
             cloudinit:
               nocloud:
                 userDataSecretRef: microshift-userdata
+            name: ansiblecloudinit
           interfaces:
           - name: default
             masquerade: {}
