@@ -5,4 +5,4 @@ metadata:
 data:
   msg: |
     init
-    (lookup "v1" "Namespace" "" "bring-your-demo-b9794").metadata
+    {{ (lookup "v1" "Namespace" "" "bring-your-demo-b9794").metadata }}
