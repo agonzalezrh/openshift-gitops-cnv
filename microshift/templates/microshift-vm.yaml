@@ -73,5 +73,11 @@ spec:
       - name: microshift-vdc
         dataVolume:
           name: microshift-vdc
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 20
+        httpGet:
+          port: 1500
+        timeoutSeconds: 10
 
       evictionStrategy: LiveMigrate
