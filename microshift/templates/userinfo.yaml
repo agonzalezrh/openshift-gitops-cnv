@@ -6,7 +6,7 @@ data:
   wait_tasks: |+
    - name: Check if microshift API is ready (max 5min)
      uri:
-       url: {{`https://{{ object_info.Route_microshift.spec.host }}:6443`}}
+       url: {{`https://{{ object_info.Route_microshift.spec.host }}:6443/readyz`}}
      register: result
      until: "result.status == 200"
      retries: 30
