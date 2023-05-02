@@ -9,6 +9,7 @@ data:
        url: {{`https://{{ object_info.Route_microshift.spec.host }}/readyz`}}
      register: result
      until: "result.status == 200"
+     validate_certs: false
      retries: 30
      delay: 10
   
