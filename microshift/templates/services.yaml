@@ -23,3 +23,15 @@ spec:
     targetPort: 6443
   selector:
     vm.kubevirt.io/name: microshift
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microshift-8445
+spec:
+  ports:
+  - port: 8445
+    protocol: TCP
+    targetPort: 8445
+  selector:
+    vm.kubevirt.io/name: microshift

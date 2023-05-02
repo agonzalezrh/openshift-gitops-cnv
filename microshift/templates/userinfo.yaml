@@ -6,7 +6,7 @@ data:
   wait_tasks: |+
    - name: Check if microshift API is ready (max 5min)
      uri:
-       url: {{`https://{{ object_info.Route_microshift.spec.host }}:6443/readyz`}}
+       url: {{`https://{{ object_info.Route_microshift.spec.host }}/readyz`}}
      register: result
      until: "result.status == 200"
      retries: 30
@@ -23,5 +23,5 @@ data:
 
     Password is `}}{{.Values.agnosticv.common_password }}{{`
 
-    The API access is https://{{ object_info.Route_microshift.spec.host }}:6443
+    The API access is https://{{ object_info.Route_microshift.spec.host }}
     `}}

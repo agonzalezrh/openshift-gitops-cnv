@@ -8,3 +8,6 @@ spec:
   to:
     kind: Service
     name: "microshift-api"
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: Redirect
