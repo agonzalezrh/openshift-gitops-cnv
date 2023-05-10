@@ -3,6 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web01
+labels:
+  app: web
 spec:
   ports:
   - port: 80
@@ -15,6 +17,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web02
+labels:
+  app: web
 spec:
   ports:
   - port: 80
