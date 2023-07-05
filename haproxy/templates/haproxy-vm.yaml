@@ -29,7 +29,7 @@ spec:
         machine:
           type: pc-q35-rhel8.6.0
         cpu:
-          cores: 2
+          cores: 3
         devices:
           disks:
           - name: pvcdisk
